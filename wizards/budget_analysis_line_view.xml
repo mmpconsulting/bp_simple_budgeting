@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- List View -->
+        <record model="ir.ui.view" id="budget_analysis_wizard_line_tree">
+            <field name="name">budget.analysis.wizard.line.tree</field>
+            <field name="model">budget.analysis.wizard.line</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="account_id"/>
+                    <field name="monthname"/>
+                    <field name="year"/>
+                    <field name="planned_amount"/>
+                    <field name="practical_amount"/>
+                    <field name="achievment"/>
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</odoo>

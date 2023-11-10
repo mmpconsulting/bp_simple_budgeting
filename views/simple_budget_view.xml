@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<!-- List View -->
+		<record model="ir.ui.view" id="bp_simple_budget_tree">
+			<field name="name">bp.simple.budget.tree</field>
+			<field name="model">bp.simple.budget</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="name"/>
+					<field name="year_period"/>
+					<field name="state"/>
+				</tree>
+			</field>
+		</record>
+
+		<!-- Form View -->
+		<record model="ir.ui.view" id="bp_simple_budget_form">
+			<field name="name">bp.simple.budget.form</field>
+			<field name="model">bp.simple.budget</field>
+			<field name="arch" type="xml">
+				<form>
+					<header>
+						<button name="action_confirm" type="object" string="Confirm" class="btn btn-primary" states="draft" />
+						<button name="action_cancel" type="object" string="Cancel" confirm="Are you sure ?" states="posted"/>
+						<field name="state" widget="statusbar"/>
+					</header>
+					<sheet >
+						<div class="oe_title">
+							<label for="name" class="oe_edit_only" string="Budget Name" />
+							<h1>
+								<field name="name" attrs="{'readonly':[('state','!=','draft')]}" placeholder="Budget Name"/>
+							</h1>
+						</div>
+						<group>
+							<group>
+								<field name="date_select" attrs="{'readonly': [('state', '=', 'posted')]}" />
+							</group>
+							<group>
+								<field name="year_period" />
+							</group>
+						</group>
+
+						<notebook>
+							<page string="Budget Lines">
+								<field name="line_ids" attrs="{'readonly': [('state', '=', 'posted')]}">
+									<tree>
+										<field name="account_id"/>
+										<field name="name" />
+										<field name="bg_jan" sum="bg_jan" string="Jan" />
+										<field name="bg_feb" sum="bg_feb" string="Feb" />
+										<field name="bg_mar" sum="bg_mar" string="Mar" />
+										<field name="bg_apr" sum="bg_apr" string="Apr" />
+										<field name="bg_may" sum="bg_may" string="May" />
+										<field name="bg_jun" sum="bg_jun" string="Jun" />
+										<field name="bg_jul" sum="bg_jul" string="Jul" />
+										<field name="bg_aug" sum="bg_aug" string="Aug" />
+										<field name="bg_sep" sum="bg_sep" string="Sep" />
+										<field name="bg_oct" sum="bg_oct" string="Oct" />
+										<field name="bg_nov" sum="bg_nov" string="Nov" />
+										<field name="bg_dec" sum="bg_dec" string="Dec" />
+										<field name="annual_amount" sum="annual_amount" />
+									</tree>
+									<form>
+										<sheet>
+											<group>
+												<field name="account_id" />
+												<field name="name" />
+											</group>
+											<group>
+												<group>
+													<field name="bg_jan" />
+													<field name="bg_feb" />
+													<field name="bg_mar" />
+													<field name="bg_apr" />
+													<field name="bg_may" />
+													<field name="bg_jun" />
+
+												</group>
+												<group>
+													<field name="bg_jul" />
+													<field name="bg_aug" />
+													<field name="bg_sep" />
+													<field name="bg_oct" />
+													<field name="bg_nov" />
+													<field name="bg_dec" />
+												</group>
+											</group>
+											<group>
+												<group></group>
+												<group class="text-right" >
+													<h1>
+														<field name="annual_amount" />
+													</h1>
+												</group>
+											</group>
+										</sheet>
+									</form>
+								</field>
+							</page>
+						</notebook>
+
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="bp_simple_budget_action">
+			<field name="name">Budget Planning</field>
+			<field name="res_model">bp.simple.budget</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<menuitem id="menu_bp_simple_budget" name="Budgeting" parent="account.menu_finance_entries" />
+
+		<menuitem id="submenu_bp_simple_budget" name="Budget Planning" parent="menu_bp_simple_budget" action="bp_simple_budget_action" />
+
+	</data>
+</odoo>

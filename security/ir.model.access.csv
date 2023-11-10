@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_bp_simple_budget,bp_simple_budgeting.bp_simple_budget,model_bp_simple_budget,base.group_user,1,1,1,1
+access_bp_simple_budget_line,bp_simple_budgeting.bp_simple_budget_line,model_bp_simple_budget_line,base.group_user,1,1,1,1

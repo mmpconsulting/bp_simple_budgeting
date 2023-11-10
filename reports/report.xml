@@ -1,0 +1,28 @@
+<odoo>
+    <data>
+
+        <record id="bp_simple_budget_master_report" model="report.paperformat">
+            <field name="name">Budget Planning</field>
+            <field name="format">A3</field>
+            <field name="orientation">Landscape</field>
+            <field name="default" eval="False" />
+            <field name="dpi" eval="96" />
+            <field name="margin_top" eval="10" />
+            <field name="margin_right" eval="10" />
+            <field name="margin_bottom" eval="10" />
+            <field name="margin_left" eval="10" />
+            <field name="header_line" eval="False" />
+        </record>
+
+        <report
+            id="bp_simple_budget_master_report_action"
+            model="bp.simple.budget"
+            string="Budget Planning"
+            report_type="qweb-pdf"
+            name="bp_simple_budgeting.bp_simple_budget_planning_template"
+            file="bp_simple_budgeting.bp_simple_budget_planning_template"
+            paperformat="bp_simple_budget_master_report"
+        />
+
+    </data>
+</odoo>

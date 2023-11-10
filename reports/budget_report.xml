@@ -1,0 +1,202 @@
+<odoo>
+    <data>
+        <template id="bp_simple_budget_planning_template">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.basic_layout">
+                    <div class="page">
+                        <style>
+                            .header{ 
+                                font-size:8pt;
+                            }
+                            table.table-budget thead tr th{
+                                vertical-align:middle;
+                                border-top:thin solid black;
+                                border-bottom:thin solid black !important;
+                                border-right:solid 2px white !important;
+                                text-transform:uppercase;
+                            }
+                            table.table-budget tbody tr.footer td{
+                                border-top:thin solid black;
+                                border-bottom:thin solid black;
+                                border-right:solid 2px white !important;
+                                font-weight:bolder;
+                            }
+                        </style>
+
+                        <t t-call="bp_simple_budgeting.bp_simple_budget_header" />
+
+                        <br/>
+
+                        <div>
+                            <h5 style="text-transform:uppercase;" >
+                                <span t-field="doc.name" />
+                            </h5>
+                        </div>
+
+                        <br/>
+
+                        <div >
+                            <table class="table table-borderless table-sm table-budget">
+                                <thead>
+                                    <tr>
+                                        <th rowspan="2">
+                                            <center>
+                                                <span>Nomor</span>
+                                                <br/>
+                                                <span>Perkiraan</span>
+                                            </center>
+                                        </th>
+                                        <th rowspan="2">
+                                            <center>Nama Perkiraan</center>
+                                        </th>
+                                        <th colspan="12">
+                                            <center>Bulan</center>
+                                        </th>
+                                        <th rowspan="2">
+                                            <center>Jumlah</center>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <center>1</center>
+                                        </th>
+                                        <th>
+                                            <center>2</center>
+                                        </th>
+                                        <th>
+                                            <center>3</center>
+                                        </th>
+                                        <th>
+                                            <center>4</center>
+                                        </th>
+                                        <th>
+                                            <center>5</center>
+                                        </th>
+                                        <th>
+                                            <center>6</center>
+                                        </th>
+                                        <th>
+                                            <center>7</center>
+                                        </th>
+                                        <th>
+                                            <center>8</center>
+                                        </th>
+                                        <th>
+                                            <center>9</center>
+                                        </th>
+                                        <th>
+                                            <center>10</center>
+                                        </th>
+                                        <th>
+                                            <center>11</center>
+                                        </th>
+                                        <th>
+                                            <center>12</center>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="doc.line_ids" t-as="line">
+                                        <tr>
+                                            <td>
+                                                <span t-field="line.account_id.code"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="line.account_id.name"/>
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-if="line.bg_jan != 0" t-esc="line.bg_jan" t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-if="line.bg_feb != 0" t-esc="line.bg_feb" t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-if="line.bg_mar != 0" t-esc="line.bg_mar" t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-if="line.bg_apr != 0" t-esc="line.bg_apr" t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-if="line.bg_may != 0" t-esc="line.bg_may" t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-if="line.bg_jun != 0" t-esc="line.bg_jun" t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-if="line.bg_jul != 0" t-esc="line.bg_jul" t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-if="line.bg_aug != 0" t-esc="line.bg_aug" t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-if="line.bg_sep != 0" t-esc="line.bg_sep" t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-if="line.bg_oct != 0" t-esc="line.bg_oct" t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-if="line.bg_nov != 0" t-esc="line.bg_nov" t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-if="line.bg_dec != 0" t-esc="line.bg_dec" t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-if="line.annual_amount != 0" t-esc="line.annual_amount" t-options='{"widget": "float", "precision": 2}'/>
+                                            </td>
+                                        </tr>
+                                    </t>
+
+                                    <tr class="footer">
+                                        <td colspan="2">
+                                            <center>TOTAL</center>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-esc="sum(line.bg_jan for line in doc.line_ids)" t-options='{"widget": "float", "precision": 2}' />
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-esc="sum(line.bg_feb for line in doc.line_ids)" t-options='{"widget": "float", "precision": 2}' />
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-esc="sum(line.bg_mar for line in doc.line_ids)" t-options='{"widget": "float", "precision": 2}' />
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-esc="sum(line.bg_apr for line in doc.line_ids)" t-options='{"widget": "float", "precision": 2}' />
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-esc="sum(line.bg_may for line in doc.line_ids)" t-options='{"widget": "float", "precision": 2}' />
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-esc="sum(line.bg_jun for line in doc.line_ids)" t-options='{"widget": "float", "precision": 2}' />
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-esc="sum(line.bg_jul for line in doc.line_ids)" t-options='{"widget": "float", "precision": 2}' />
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-esc="sum(line.bg_aug for line in doc.line_ids)" t-options='{"widget": "float", "precision": 2}' />
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-esc="sum(line.bg_sep for line in doc.line_ids)" t-options='{"widget": "float", "precision": 2}' />
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-esc="sum(line.bg_oct for line in doc.line_ids)" t-options='{"widget": "float", "precision": 2}' />
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-esc="sum(line.bg_nov for line in doc.line_ids)" t-options='{"widget": "float", "precision": 2}' />
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-esc="sum(line.bg_dec for line in doc.line_ids)" t-options='{"widget": "float", "precision": 2}' />
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-esc="sum(line.annual_amount for line in doc.line_ids)" t-options='{"widget": "float", "precision": 2}' />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <t t-call="bp_simple_budgeting.bp_simple_budget_footer" />
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>
